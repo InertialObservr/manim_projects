@@ -20,7 +20,7 @@ def add_obj(obj, string="-", where=RIGHT, color=WHITE):
         
     return new_obj.next_to(obj, where)
 
-class align(Scene):
+class geoSeries(Scene):
     def construct(self):
         # for x in range(-4, 4):
         #     for y in range(-4, 4):
@@ -160,3 +160,6 @@ class align(Scene):
        	self.play(Transform(factor, final))
 
         self.wait(2)
+        
+#To make animation go to terminal and execute
+# manim geometric_series.py geoSeries
