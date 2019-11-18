@@ -1,5 +1,10 @@
 from manimlib.imports import *
-from manimHelper import add_minus
+#from manimHelper import add_obj
+
+#define helper function for adding TexMobjects 
+#manimHelper is a function library I wrote, to which
+#add_obj belongs. I posted it here explicitly for 
+#reading convenience
 
 def add_obj(obj, string="-", where=RIGHT, color=WHITE):
 
@@ -20,6 +25,8 @@ class align(Scene):
         # for x in range(-4, 4):
         #     for y in range(-4, 4):
         #         self.add(Dot(np.array([x, y, 0]), color=DARK_GREY))
+        ## only run while creating for help with aboslute coordinates 
+        
                 
                 
         tex1a = TexMobject(
@@ -46,7 +53,6 @@ class align(Scene):
         )
         
         tex2a.next_to(tex1a, np.array([0,-3,0]))
-#        tex2.set_width(FRAME_WIDTH - 6* LARGE_BUFF)
         
         tex2b = add_obj(tex2a, "=")
         
@@ -55,12 +61,10 @@ class align(Scene):
             tex_to_color_map={"{r}": BLUE}
         )
         
-#        tex2b.next_to(tex1b, np.array([0,-2.2,0]))
         tex2c.next_to(tex2b, RIGHT)
 
 
         
-#        tex2a.set_width(FRAME_WIDTH - 6* LARGE_BUFF)
 
 #############################################
         
@@ -94,7 +98,7 @@ class align(Scene):
         
         
 
-        coord2 = DOWN
+        #coord2 = DOWN
         self.play(Write(tex1a), Write(tex1b), Write(tex1c))
         self.wait(0.5)
         self.add(tex1aCopy, tex1bCopy, tex1cCopy)
@@ -128,8 +132,10 @@ class align(Scene):
                   ApplyMethod(eq.shift, np.array([0,1.5,0]))
                   )
                   
-        #Here is where I discovered the Group function ... note the previous self.play should
-        #be done with group (as it is below)
+        #The previous self.play is hackish ..
+        #I discovered the Group function shortly hereafter thinking
+        #there has got to be a better way...
+        #This should have been done using Group (as it was below)
         
         self.wait(1.5)
 
