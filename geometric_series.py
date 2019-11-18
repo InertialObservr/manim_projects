@@ -2,7 +2,7 @@ from manimlib.imports import *
 #from manimHelper import add_obj
 
 #define helper function for adding TexMobjects 
-#manimHelper is a function library I wrote, to which
+#manimHelper is a function library I wrote to which
 #add_obj belongs. I posted it here explicitly for 
 #reading convenience
 
