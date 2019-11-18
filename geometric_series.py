@@ -132,7 +132,7 @@ class align(Scene):
                   ApplyMethod(eq.shift, np.array([0,1.5,0]))
                   )
                   
-        #The previous self.play is hackish ..
+        #This very last self.play above is hackish ..
         #I discovered the Group function shortly hereafter thinking
         #there has got to be a better way...
         #This should have been done using Group (as it was below)
