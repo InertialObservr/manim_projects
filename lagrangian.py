@@ -8,19 +8,6 @@ Created on Tue Dec  3 10:26:51 2019
 
 from manimlib.imports import *
 
-def add_obj(obj, string="-", where=RIGHT, color=WHITE):
-
-    if color==WHITE:
-    	colors={}
-    else: 
-    	colors={string: color}
-
-    new_obj=TexMobject(
-            string,
-            tex_to_color_map = colors
-        )
-        
-    return new_obj.next_to(obj, where)
 
 class Lagrangian(Scene):
     def construct(self):
