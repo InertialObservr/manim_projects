@@ -52,7 +52,7 @@ def linInterp(x1,x2):
         
     return pts, np.trim_zeros(objs)
     
-def FlipAnim(obj):
+def flipAnim(obj):
     anim = ApplyMethod(obj.flip, [0,1,0])
     return anim
 
@@ -128,7 +128,7 @@ class Tri(Scene):
             obj2 = TriLabGroups[n]
             tri = TriLabTups[n]
             
-            flipList.append(FlipAnim(obj2[0]))
+            flipList.append(flipAnim(obj2[0]))
             flipList.append( ApplyMethod(obj2[1].shift, .5*LEFT) )
             rotList.append(rotAnim(obj2,n))
             centList.append(centerAtOrigin(obj2, n))
