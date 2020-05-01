@@ -21,7 +21,7 @@ viridis = cm.get_cmap('viridis_r', N-1)
 
 
 
-def mkTri(n):
+def mktri(n):
     verts = [[n-1,0,0], [n,0,0], [n,np.sqrt(n),0]]
     poly = Polygon(*verts, color=WHITE, fill_opacity = .7  , fill_color = rgba_to_color(viridis(n)),
                    stroke_width=2)
@@ -92,29 +92,29 @@ class Tri(Scene):
     def construct(self):
         
 
-        LineAnim, LineObjects = linInterp(0,N)
+        lineAnim, LineObjects = linInterp(0,N)
         
         triList = []
         labList = []
-        TriLabTups = np.zeros(N, dtype=object)
-        TriLabGroups = np.zeros(N, dtype=object)
+        triLabTups = np.zeros(N, dtype=object)
+        triLabGroups = np.zeros(N, dtype=object)
         
         for n in range(1,N):
-           TriLabTups[n-1] = [mkTri(n),mkLab(n)]
-           TriLabGroups[n-1] = Group(mkTri(n), mkLab(n))
+           triLabTups[n-1] = [mktri(n),mkLab(n)]
+           triLabGroups[n-1] = Group(mktri(n), mkLab(n))
            
-           triList.append( ShowCreation( TriLabTups[n-1][0] ) )
-           labList.append( ShowCreation( TriLabTups[n-1][1] ) )
+           triList.append( ShowCreation( triLabTups[n-1][0] ) )
+           labList.append( ShowCreation( triLabTups[n-1][1] ) )
            
         label = TexMobject('f(x)  =  \\sqrt{x}', color=color).move_to([4.5,3,0])
         label.scale(1.25)
-        LineAnim.append(FadeIn(label))
+        lineAnim.append(FadeIn(label))
         
         self.play(*triList)
         self.wait(1)
         self.play(*labList)
         self.wait(1)
-        self.play(*LineAnim)
+        self.play(*lineAnim)
         self.wait(1)
         
 
@@ -124,9 +124,9 @@ class Tri(Scene):
         rotList = []
         centList = []
         finRotList = []
-        for n in range(1,len(TriLabGroups)-1):
-            obj2 = TriLabGroups[n]
-            tri = TriLabTups[n]
+        for n in range(1,len(triLabGroups)-1):
+            obj2 = triLabGroups[n]
+            tri = triLabTups[n]
             
             flipList.append(flipAnim(obj2[0]))
             flipList.append( ApplyMethod(obj2[1].shift, .5*LEFT) )
@@ -135,7 +135,7 @@ class Tri(Scene):
             
             
         
-        tupArray = np.array(TriLabTups).flatten()
+        tupArray = np.array(triLabTups).flatten()
         tupArray = np.trim_zeros(tupArray)      
         
         
@@ -170,20 +170,20 @@ class Tri(Scene):
         
         
         
-        self.remove(TriLabTups[0][0] )
-        self.remove(TriLabTups[0][1] )
+        self.remove(triLabTups[0][0] )
+        self.remove(triLabTups[0][1] )
         
         
-        toGroup = np.array(TriLabGroups).flatten()
+        toGroup = np.array(triLabGroups).flatten()
         toGroup = np.trim_zeros(toGroup)      
         initGroup = Group(*toGroup)
         
         self.play(ApplyMethod(initGroup.shift, [7,1.5,0]) , run_time=.75)
         self.wait(.5)
         
-        for n in range(1,len(TriLabGroups)-1):
-            obj2 = TriLabGroups[n]
-            tri = TriLabTups[n]    
+        for n in range(1,len(triLabGroups)-1):
+            obj2 = triLabGroups[n]
+            tri = triLabTups[n]    
             finRotList.append(rotToPlace(obj2,n, about=toGroup[0].get_corner(DOWN+LEFT)))
         
         self.play(*finRotList, run_time=.7)
