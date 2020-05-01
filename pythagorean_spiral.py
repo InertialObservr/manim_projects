@@ -81,7 +81,7 @@ def rotToPlace(obj, n, about = ORIGIN):
     
     
 
-class Tri(Scene):
+class tri(Scene):
     
     CONFIG = {
         "camera_class": Camera,
@@ -92,7 +92,7 @@ class Tri(Scene):
     def construct(self):
         
 
-        lineAnim, LineObjects = linInterp(0,N)
+        LineAnim, LineObjects = linInterp(0,N)
         
         triList = []
         labList = []
@@ -108,13 +108,13 @@ class Tri(Scene):
            
         label = TexMobject('f(x)  =  \\sqrt{x}', color=color).move_to([4.5,3,0])
         label.scale(1.25)
-        lineAnim.append(FadeIn(label))
+        LineAnim.append(FadeIn(label))
         
         self.play(*triList)
         self.wait(1)
         self.play(*labList)
         self.wait(1)
-        self.play(*lineAnim)
+        self.play(*LineAnim)
         self.wait(1)
         
 
